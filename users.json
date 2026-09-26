@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1001,
+    "name": "Student",
+    "email": "student@digitalshield.com",
+    "password": "$2a$10$bq6uwfft4QJ5Fc0D1TMAB.kcPspdFw3wybeLxxy4sg1XOYIM11HhK",
+    "createdAt": "2026-09-05T12:19:37.609Z",
+    "quizScore": 5,
+    "quizCompletedAt": "2026-09-05T12:19:55.802Z",
+    "quizAttempts": [
+      {
+        "score": 5,
+        "total": 5,
+        "percentage": 100,
+        "date": "2026-09-05T12:19:37.609Z"
+      },
+      {
+        "score": 5,
+        "total": 5,
+        "percentage": 100,
+        "date": "2026-09-05T12:19:55.802Z"
+      }
+    ]
+  },
+  {
+    "id": 1788610795787,
+    "name": "Test User",
+    "email": "tester_1788610795678@test.com",
+    "password": "$2a$10$8ktqfUdAMeUWBR/iIhjKtOt384TNCzTyVAcfyYNGC3kYsw0NRAOS.",
+    "createdAt": "2026-09-05T12:19:55.787Z",
+    "quizScore": null,
+    "quizCompletedAt": null,
+    "quizAttempts": []
+  }
+]

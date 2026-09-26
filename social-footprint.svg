@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#09262e"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" rx="24" fill="url(#g4)"/>
+  <!-- Map Pin / Geo location warning -->
+  <circle cx="200" cy="180" r="80" fill="#0e7490" opacity="0.2"/>
+  <path d="M200 110 C165 110 140 135 140 170 C140 215 200 270 200 270 C200 270 260 215 260 170 C260 135 235 110 200 110 Z" fill="#06b6d4"/>
+  <circle cx="200" cy="165" r="22" fill="#ffffff"/>
+  <circle cx="200" cy="165" r="10" fill="#0891b2"/>
+  <!-- Warning badge on location -->
+  <circle cx="245" cy="135" r="18" fill="#ef4444"/>
+  <text x="245" y="142" text-anchor="middle" fill="#ffffff" font-family="Arial" font-size="20" font-weight="bold">!</text>
+
+  <!-- Digital Footprint Data Trail -->
+  <g transform="translate(380, 100)">
+    <rect width="340" height="48" rx="10" fill="#164e63" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="20" y="30" fill="#cffafe" font-family="Arial" font-size="14" font-weight="bold">Live Flight / Boarding Pass: AVOID</text>
+    <text x="300" y="30" fill="#ef4444" font-family="Arial" font-size="16" font-weight="bold">✕</text>
+
+    <rect y="65" width="340" height="48" rx="10" fill="#164e63" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="20" y="95" fill="#cffafe" font-family="Arial" font-size="14" font-weight="bold">Home Address / Daily Routine: AVOID</text>
+    <text x="300" y="95" fill="#ef4444" font-family="Arial" font-size="16" font-weight="bold">✕</text>
+
+    <rect y="130" width="340" height="48" rx="10" fill="#164e63" stroke="#22d3ee" stroke-width="1.5"/>
+    <text x="20" y="160" fill="#cffafe" font-family="Arial" font-size="14" font-weight="bold">Phone Number &amp; Private Email: HIDE</text>
+    <text x="300" y="160" fill="#10b981" font-family="Arial" font-size="16" font-weight="bold">✓</text>
+  </g>
+
+  <text x="60" y="55" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="1">DIGITAL FOOTPRINT &amp; OVERSHARING RISKS</text>
+</svg>

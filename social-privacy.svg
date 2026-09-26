@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f2042"/>
+      <stop offset="100%" stop-color="#163864"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="360" rx="24" fill="url(#g1)"/>
+  <!-- Lock & Shield Graphic -->
+  <circle cx="160" cy="180" r="85" fill="#1e4976" opacity="0.6"/>
+  <circle cx="160" cy="180" r="60" fill="#2563eb"/>
+  <path d="M145 180v-16a15 15 0 0 1 30 0v16" fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <rect x="135" y="180" width="50" height="40" rx="8" fill="#ffffff"/>
+  <circle cx="160" cy="198" r="5" fill="#1e3a8a"/>
+  <!-- Decorative profile toggle UI -->
+  <rect x="330" y="90" width="390" height="65" rx="14" fill="#132f55" stroke="#3b82f6" stroke-width="2"/>
+  <circle cx="370" cy="122" r="18" fill="#38bdf8"/>
+  <rect x="405" y="112" width="160" height="12" rx="6" fill="#93c5fd"/>
+  <rect x="405" y="130" width="100" height="8" rx="4" fill="#60a5fa" opacity="0.7"/>
+  <!-- Toggle Switch ON -->
+  <rect x="630" y="107" width="60" height="30" rx="15" fill="#10b981"/>
+  <circle cx="675" cy="122" r="11" fill="#ffffff"/>
+  
+  <rect x="330" y="175" width="390" height="65" rx="14" fill="#132f55" stroke="#3b82f6" stroke-width="2"/>
+  <circle cx="370" cy="207" r="18" fill="#818cf8"/>
+  <rect x="405" y="197" width="180" height="12" rx="6" fill="#c7d2fe"/>
+  <rect x="405" y="215" width="120" height="8" rx="4" fill="#a5b4fc" opacity="0.7"/>
+  <rect x="630" y="192" width="60" height="30" rx="15" fill="#10b981"/>
+  <circle cx="675" cy="207" r="11" fill="#ffffff"/>
+
+  <text x="60" y="60" fill="#67e8f9" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="1">PRIVACY &amp; PROFILE CONTROL</text>
+</svg>

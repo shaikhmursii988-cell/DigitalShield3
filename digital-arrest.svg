@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#061b36"/><stop offset="1" stop-color="#111044"/></linearGradient></defs>
+<rect width="800" height="360" rx="28" fill="url(#g)"/><circle cx="650" cy="90" r="58" fill="#ffc247" opacity=".12"/><path d="M650 55v55m0 25v6" stroke="#ffc247" stroke-width="13" stroke-linecap="round"/>
+<path d="M70 280h260M95 280V165h55v115m25 0V120h55v160m25 0v-75h55v75" fill="none" stroke="#21d9ff" stroke-width="10"/>
+<path d="M425 235c40-45 80-45 120 0" fill="none" stroke="#705cff" stroke-width="13" stroke-linecap="round"/><circle cx="485" cy="170" r="42" fill="#0c5ca8" stroke="#1ee7ff" stroke-width="8"/><path d="M465 170l15 15 27-31" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="70" y="70" fill="#bdeeff" font-family="Arial" font-size="28" font-weight="700">DIGITAL ARREST ALERT</text></svg>

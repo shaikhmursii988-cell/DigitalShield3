@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1788610795804,
+    "userId": 1001,
+    "type": "🎯 Quiz Completed",
+    "detail": "Scored 5/5 (100%)",
+    "time": "2026-09-05T12:19:55.804Z"
+  },
+  {
+    "id": 1788610795790,
+    "userId": 1788610795787,
+    "type": "📝 Account Signup",
+    "detail": "New DigitalShield account created",
+    "time": "2026-09-05T12:19:55.790Z"
+  },
+  {
+    "id": 1788610795674,
+    "userId": 1001,
+    "type": "🔐 Account Login",
+    "detail": "Successful login",
+    "time": "2026-09-05T12:19:55.674Z"
+  }
+]

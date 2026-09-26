@@ -1,0 +1,4115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DigitalShield | Cyber Safety Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#eef8ff;
+    color:#234b70;
+    min-height:100vh;
+}
+
+.bg-grid{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-5;
+
+    background-image:
+        linear-gradient(rgba(55,145,210,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(55,145,210,.045) 1px,transparent 1px);
+
+    background-size:45px 45px;
+}
+
+.glow{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.25;
+    pointer-events:none;
+    z-index:-4;
+}
+
+.g1{
+    top:-120px;
+    left:-100px;
+    background:#8ddcff;
+}
+
+.g2{
+    right:-120px;
+    top:35%;
+    background:#b8a9ff;
+}
+
+.g3{
+    bottom:-150px;
+    left:35%;
+    background:#8ae8df;
+}
+
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+.login-screen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(100,200,255,.22),transparent 30%),
+        radial-gradient(circle at 80% 70%,rgba(130,100,255,.18),transparent 30%),
+        #eaf7ff;
+
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+
+    padding:38px 34px;
+
+    border-radius:25px;
+
+    background:rgba(255,255,255,.94);
+
+    border:1px solid #cce8f8;
+
+    box-shadow:
+        0 25px 70px rgba(50,120,180,.18);
+
+    text-align:center;
+}
+
+.login-logo{
+    width:75px;
+    height:75px;
+
+    margin:0 auto 18px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:38px;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2584c8,#7767e8);
+
+    box-shadow:0 12px 30px rgba(70,130,220,.25);
+}
+
+.login-box h1{
+    font-size:31px;
+    color:#234e78;
+    margin-bottom:5px;
+}
+
+.login-box h1 span{
+    color:#5e6fe7;
+}
+
+.login-subtitle{
+    color:#7895ad;
+    font-size:13px;
+    margin-bottom:28px;
+}
+
+.login-form{
+    text-align:left;
+}
+
+.login-form label{
+    display:block;
+    color:#527492;
+    font-size:12px;
+    font-weight:700;
+    margin:0 0 7px;
+}
+
+.login-form input{
+    width:100%;
+    height:48px;
+
+    border:1px solid #cfe5f3;
+    border-radius:12px;
+
+    padding:0 14px;
+
+    outline:none;
+
+    background:#f7fcff;
+    color:#234b70;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+}
+
+.login-form input:focus{
+    border-color:#6baee0;
+    box-shadow:0 0 0 3px rgba(80,160,220,.10);
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    padding-right:65px;
+}
+
+.password-box button{
+    position:absolute;
+    right:7px;
+    top:5px;
+
+    height:38px;
+
+    border:0;
+    border-radius:9px;
+
+    padding:0 11px;
+
+    cursor:pointer;
+
+    color:#4d78a0;
+    background:#eaf6ff;
+}
+
+.login-btn{
+    width:100%;
+    height:49px;
+
+    border:0;
+    border-radius:13px;
+
+    cursor:pointer;
+
+    color:white;
+    font-weight:800;
+    font-size:14px;
+
+    background:linear-gradient(135deg,#328bc9,#6d68e7);
+
+    box-shadow:0 10px 25px rgba(70,120,210,.22);
+
+    transition:.2s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+#loginMessage{
+    text-align:center;
+    min-height:20px;
+    margin-top:13px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.login-footer{
+    margin-top:25px;
+    padding-top:18px;
+
+    border-top:1px solid #e2eff7;
+
+    color:#91aabd;
+    font-size:11px;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar{
+    height:78px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    background:rgba(255,255,255,.86);
+
+    border-bottom:1px solid #d6ebf7;
+
+    box-shadow:0 5px 25px rgba(60,130,180,.06);
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    backdrop-filter:blur(15px);
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-shield{
+    width:43px;
+    height:43px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:white;
+
+    background:linear-gradient(135deg,#318bc9,#7067e8);
+
+    font-size:22px;
+    font-weight:900;
+}
+
+.brand h1{
+    color:#24527d;
+    font-size:21px;
+}
+
+.brand h1 span{
+    color:#6570e5;
+}
+
+.brand p{
+    color:#8aa3b7;
+    font-size:10px;
+    margin-top:2px;
+}
+
+.topnav{
+    display:flex;
+    gap:4px;
+}
+
+.top-link{
+    border:0;
+    background:transparent;
+
+    color:#64839e;
+
+    padding:10px 12px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:12px;
+}
+
+.top-link:hover,
+.top-link.active{
+    background:#e8f5fd;
+    color:#347bb0;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.theme{
+    display:flex;
+    gap:4px;
+}
+
+.theme button{
+    width:34px;
+    height:34px;
+
+    border:1px solid #d6eaf5;
+
+    background:#f4fbff;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.avatar{
+    width:38px;
+    height:38px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#dceeff;
+    color:#397ab0;
+
+    font-weight:800;
+}
+
+.profile b{
+    display:block;
+    color:#365d7e;
+    font-size:12px;
+}
+
+.profile small{
+    color:#7f9bad;
+    font-size:10px;
+}
+
+.profile small i{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#31bf91;
+    margin-right:4px;
+}
+
+.drop{
+    border:0;
+    background:transparent;
+    color:#66859f;
+    cursor:pointer;
+}
+
+.hamb{
+    display:none;
+    border:0;
+    background:transparent;
+    font-size:23px;
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar{
+    position:fixed;
+    top:78px;
+    left:0;
+    bottom:0;
+
+    width:225px;
+
+    padding:20px 13px;
+
+    background:rgba(250,253,255,.94);
+
+    border-right:1px solid #d8edf7;
+
+    z-index:900;
+}
+
+.side-link{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    border:0;
+    background:transparent;
+
+    color:#66849d;
+
+    padding:12px 14px;
+
+    margin-bottom:5px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.side-link span{
+    width:20px;
+    text-align:center;
+}
+
+.side-link:hover,
+.side-link.active{
+    background:#e5f4fc;
+    color:#2879b4;
+}
+
+.side-bottom{
+    position:absolute;
+    left:13px;
+    right:13px;
+    bottom:20px;
+}
+
+.side-bottom p{
+    color:#9ab0c0;
+    font-size:10px;
+    line-height:1.6;
+    padding:15px;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+    margin-left:225px;
+    padding:30px;
+    min-height:calc(100vh - 78px);
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.page-title{
+    margin-bottom:25px;
+}
+
+.page-title h2{
+    color:#285681;
+    font-size:27px;
+    margin-bottom:6px;
+}
+
+.page-title p{
+    color:#7d99ad;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card,
+.tool-card,
+.info,
+.module{
+    background:rgba(255,255,255,.91);
+
+    border:1px solid #d4eaf5;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 12px 35px rgba(60,130,180,.07);
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 320px;
+    gap:24px;
+}
+
+.center-col,
+.right-col{
+    min-width:0;
+}
+
+.welcome{
+    min-height:220px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:28px;
+
+    overflow:hidden;
+}
+
+.welcome-text small{
+    color:#4d96c8;
+    font-size:11px;
+}
+
+.welcome h2{
+    color:#2d5a80;
+    font-size:28px;
+    margin:10px 0 5px;
+}
+
+.welcome p{
+    color:#7995a9;
+    font-size:13px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+
+    margin-top:25px;
+}
+
+.stats div{
+    background:#f1f9fe;
+    border:1px solid #dceef7;
+
+    padding:11px;
+
+    border-radius:11px;
+}
+
+.stats b,
+.stats small{
+    display:block;
+}
+
+.stats b{
+    color:#3c6e94;
+    font-size:14px;
+    margin-top:3px;
+}
+
+.stats small{
+    color:#8ba3b4;
+    font-size:9px;
+    margin-top:3px;
+}
+
+.stats em{
+    display:block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#35bf91;
+}
+
+.hero-shield{
+    width:180px;
+    height:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+.network{
+    position:absolute;
+    width:155px;
+    height:155px;
+    border-radius:50%;
+    border:1px dashed #9bd5ee;
+}
+
+.big-shield{
+    width:95px;
+    height:110px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:linear-gradient(145deg,#dff4ff,#dfe1ff);
+
+    clip-path:polygon(
+        50% 0,
+        90% 18%,
+        90% 58%,
+        75% 80%,
+        50% 100%,
+        25% 80%,
+        10% 58%,
+        10% 18%
+    );
+
+    color:#5d70e0;
+    font-size:35px;
+    font-weight:900;
+
+    box-shadow:0 15px 30px rgba(60,130,220,.15);
+}
+
+
+/* =========================================================
+   SECTION HEAD
+   ========================================================= */
+
+.section-head{
+    margin:27px 0 16px;
+}
+
+.section-head h2{
+    color:#315d82;
+    font-size:20px;
+}
+
+.section-head h2 span{
+    color:#6570e4;
+}
+
+.section-head p{
+    color:#809bad;
+    font-size:12px;
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   TOOLS
+   ========================================================= */
+
+.tools-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.tool-card{
+    padding:21px;
+    transition:.2s;
+}
+
+.tool-card:hover{
+    transform:translateY(-3px);
+}
+
+.tool-icon{
+    width:45px;
+    height:45px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    margin-bottom:14px;
+
+    font-size:21px;
+}
+
+.tool-icon.purple{
+    background:#eeeaff;
+    color:#7064dc;
+}
+
+.tool-icon.blue{
+    background:#e4f4ff;
+    color:#3989c6;
+}
+
+.tool-icon.green{
+    background:#e5faf4;
+    color:#38a985;
+}
+
+.tool-icon.violet{
+    background:#f0eaff;
+    color:#765ad8;
+}
+
+.tool-card h3{
+    color:#315b7d;
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.tool-card p{
+    color:#7c98ab;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.tool-card button,
+.module button,
+.promo button{
+    border:0;
+    background:transparent;
+
+    color:#3b85ba;
+
+    cursor:pointer;
+
+    margin-top:15px;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   SCAM ROW
+   ========================================================= */
+
+.scam-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.scam-row article{
+    padding:15px;
+
+    border-radius:13px;
+
+    background:#f8fcff;
+
+    border:1px solid #dceef7;
+}
+
+.scam-row article b{
+    display:block;
+    margin-bottom:8px;
+}
+
+.scam-row strong{
+    display:block;
+    color:#416987;
+    font-size:12px;
+}
+
+.scam-row a{
+    display:inline-block;
+    color:#438bc0;
+    font-size:10px;
+    margin-top:8px;
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   QUOTE
+   ========================================================= */
+
+.quote{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-top:18px;
+
+    padding:20px;
+}
+
+.quote b{
+    color:#426b88;
+    font-size:14px;
+}
+
+.quote p{
+    color:#8ba2b2;
+    font-size:11px;
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   RIGHT COLUMN
+   ========================================================= */
+
+.score-card{
+    padding:23px;
+}
+
+.score-card h2,
+.tips h2{
+    color:#345e7d;
+    font-size:17px;
+    margin-bottom:18px;
+}
+
+.score-flex{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.ring{
+    width:105px;
+    height:105px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(circle,#fff 58%,transparent 59%),
+        conic-gradient(#5d9fca 0 78%,#dcecf4 78%);
+
+}
+
+.ring strong{
+    color:#315e82;
+    font-size:25px;
+}
+
+.ring small{
+    color:#91a7b5;
+    font-size:9px;
+}
+
+.ring b{
+    color:#35a782;
+    font-size:10px;
+}
+
+.score-flex ul{
+    list-style:none;
+}
+
+.score-flex li{
+    display:flex;
+    gap:7px;
+
+    color:#3eaf8d;
+
+    font-size:10px;
+
+    margin-bottom:10px;
+}
+
+.score-flex li span{
+    color:#7895a9;
+}
+
+.primary{
+    width:100%;
+
+    border:0;
+    border-radius:10px;
+
+    padding:12px;
+
+    background:linear-gradient(135deg,#398fc7,#7068e5);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+.score-card .primary{
+    margin-top:20px;
+}
+
+.tips{
+    padding:22px;
+    margin-top:17px;
+}
+
+.tips p{
+    color:#7895a9;
+    font-size:11px;
+    margin:12px 0;
+}
+
+.promo{
+    padding:24px;
+
+    margin-top:17px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#e5f6ff,#eae8ff);
+
+    border:1px solid #d6e6f5;
+}
+
+.promo h2{
+    color:#3c6280;
+    font-size:17px;
+    margin:12px 0;
+}
+
+.promo h2 span{
+    color:#706be0;
+}
+
+
+/* =========================================================
+   LEARNING MODULES
+   ========================================================= */
+
+.module-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.module{
+    padding:22px;
+}
+
+.module > span{
+    font-size:28px;
+}
+
+.module h3{
+    color:#345e7d;
+    font-size:16px;
+    margin:13px 0 7px;
+}
+
+.module p{
+    color:#7c98ab;
+    font-size:11px;
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   CHECKERS
+   ========================================================= */
+
+.checker{
+    padding:25px;
+    max-width:850px;
+}
+
+.checker input,
+.checker textarea{
+    width:100%;
+
+    border:1px solid #d0e7f4;
+    border-radius:12px;
+
+    background:#f8fcff;
+
+    color:#315b7d;
+
+    outline:none;
+
+    padding:14px;
+
+    font-size:13px;
+}
+
+.checker textarea{
+    min-height:180px;
+    resize:vertical;
+}
+
+.checker input:focus,
+.checker textarea:focus{
+    border-color:#76b5db;
+}
+
+#showPwd{
+    margin-top:10px;
+
+    border:1px solid #d4e8f3;
+    background:#edf8ff;
+
+    color:#5180a1;
+
+    padding:9px 14px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+}
+
+.meter{
+    height:10px;
+
+    margin-top:18px;
+
+    border-radius:10px;
+
+    background:#e2eff6;
+
+    overflow:hidden;
+}
+
+.meter i{
+    display:block;
+    width:0;
+    height:100%;
+
+    background:linear-gradient(90deg,#ee8790,#e7ba62,#45b991);
+
+    transition:.3s;
+}
+
+#pwdResult{
+    color:#416987;
+    margin-top:15px;
+}
+
+#pwdRules{
+    margin-top:15px;
+    padding-left:20px;
+
+    color:#7895a9;
+
+    font-size:12px;
+
+    line-height:1.8;
+}
+
+.checker .primary{
+    margin-top:15px;
+    max-width:200px;
+}
+
+.result{
+    display:none;
+
+    margin-top:17px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#eef9ff;
+
+    border:1px solid #d6edf7;
+
+    color:#527792;
+
+    font-size:12px;
+
+    line-height:1.6;
+}
+
+.result.show{
+    display:block;
+}
+
+
+/* =========================================================
+   SOCIAL / INFO
+   ========================================================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.info{
+    padding:23px;
+}
+
+.info > div:first-child{
+    font-size:32px;
+}
+
+.info h3{
+    color:#345e7d;
+    font-size:17px;
+    margin:12px 0 7px;
+}
+
+.info p{
+    color:#7c98ab;
+    font-size:12px;
+    line-height:1.65;
+}
+
+
+/* =========================================================
+   UPDATED SCAM AWARENESS
+   ========================================================= */
+
+.scam-info-card{
+    position:relative;
+    overflow:hidden;
+
+    min-height:485px;
+
+    padding:22px;
+}
+
+.scam-image,
+.card-banner{
+    width:100%;
+    height:160px;
+    border-radius:16px;
+    overflow:hidden;
+    margin-bottom:17px;
+    border:1px solid #cce6f5;
+    background:#0f172a;
+    display:block;
+}
+
+.scam-image img,
+.card-banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.scam-tag{
+    display:inline-block;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:9px;
+    font-weight:800;
+
+    margin-bottom:9px;
+}
+
+.scam-tag.red{
+    color:#df4b62;
+    background:#fff0f3;
+}
+
+.scam-tag.orange{
+    color:#c98916;
+    background:#fff5df;
+}
+
+.scam-tag.pink{
+    color:#df5275;
+    background:#fff0f4;
+}
+
+.scam-tag.yellow{
+    color:#bd850c;
+    background:#fff6df;
+}
+
+.scam-info-card h3{
+    color:#2f5b7d;
+    font-size:18px;
+    margin-bottom:9px;
+}
+
+.scam-info-card p{
+    color:#7592a7;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.scam-info-card ul{
+    list-style:none;
+    margin:16px 0;
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.scam-info-card li{
+    color:#567c97;
+    font-size:11px;
+    line-height:1.45;
+}
+
+.how-protect{
+    padding:12px;
+
+    border-radius:11px;
+
+    background:#eef9ff;
+
+    border:1px solid #d7edf7;
+
+    color:#64839a;
+
+    font-size:10px;
+    line-height:1.55;
+}
+
+.how-protect b{
+    color:#327ab0;
+}
+
+
+/* =========================================================
+   SAFETY BOX
+   ========================================================= */
+
+.scam-safety-box{
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    margin-top:20px;
+
+    padding:22px;
+
+    border-radius:17px;
+
+    background:linear-gradient(135deg,#edf9ff,#eaeaff);
+
+    border:1px solid #d4eaf6;
+}
+
+.scam-safety-icon{
+    width:55px;
+    height:55px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    background:#dceeff;
+
+    font-size:27px;
+}
+
+.scam-safety-box h3{
+    color:#315d7e;
+    font-size:17px;
+    margin-bottom:5px;
+}
+
+.scam-safety-box p{
+    color:#7a97aa;
+    font-size:11px;
+    margin-bottom:5px;
+}
+
+.scam-safety-box strong{
+    color:#397fb3;
+    font-size:11px;
+}
+
+
+/* REPORT */
+
+.scam-report-box{
+    margin-top:18px;
+
+    padding:22px;
+
+    border-radius:17px;
+
+    background:linear-gradient(135deg,#fff4f6,#edf7ff);
+
+    border:1px solid #f0d8de;
+}
+
+.scam-report-box h3{
+    color:#3a607c;
+    font-size:17px;
+    margin-bottom:7px;
+}
+
+.scam-report-box p{
+    color:#7895a8;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.report-number{
+    display:inline-block;
+
+    margin-top:14px;
+
+    padding:9px 17px;
+
+    border-radius:10px;
+
+    background:white;
+
+    border:1px solid #f1d5dc;
+
+    color:#dd536b;
+
+    font-size:19px;
+    font-weight:800;
+}
+
+.scam-report-box small{
+    margin-left:9px;
+    color:#819aaa;
+}
+
+
+/* =========================================================
+   SCORE PAGE
+   ========================================================= */
+
+.big-score{
+    padding:35px;
+
+    display:flex;
+    align-items:center;
+
+    gap:35px;
+}
+
+.ring.large{
+    width:180px;
+    height:180px;
+}
+
+.big-score h3{
+    color:#355f7e;
+    margin-bottom:8px;
+}
+
+.big-score p{
+    color:#7895a8;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+
+.quiz{
+    max-width:850px;
+    padding:27px;
+}
+
+#qText{
+    color:#315d7e;
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+#qOptions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+#qOptions label{
+    padding:13px;
+
+    border:1px solid #d6eaf5;
+
+    border-radius:11px;
+
+    background:#f8fcff;
+
+    color:#607f98;
+
+    cursor:pointer;
+
+    font-size:12px;
+}
+
+#qOptions label:hover{
+    background:#eef8ff;
+}
+
+#qOptions input{
+    margin-right:8px;
+}
+
+#nextQ{
+    margin-top:18px;
+    max-width:190px;
+}
+
+.quizResult{
+    margin-top:18px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#eef9ff;
+
+    color:#3d7193;
+
+    font-weight:700;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+    margin-left:225px;
+
+    padding:22px 30px;
+
+    border-top:1px solid #d9edf7;
+
+    color:#91a8b7;
+
+    font-size:10px;
+
+    text-align:center;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:1100px){
+
+    .topnav{
+        display:none;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .right-col{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:15px;
+    }
+
+    .right-col .promo{
+        grid-column:1/-1;
+        margin-top:0;
+    }
+
+}
+
+@media(max-width:850px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main,
+    footer{
+        margin-left:0;
+    }
+
+    .hamb{
+        display:block;
+    }
+
+    .profile{
+        margin-left:auto;
+        margin-right:10px;
+    }
+
+    .profile > div:not(.avatar):not(.theme){
+        display:none;
+    }
+
+    .tools-grid,
+    .module-grid,
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .scam-row{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .topbar{
+        padding:0 14px;
+        height:68px;
+    }
+
+    .sidebar{
+        top:68px;
+    }
+
+    .main{
+        padding:18px 14px;
+    }
+
+    .brand h1{
+        font-size:18px;
+    }
+
+    .brand p{
+        font-size:8px;
+    }
+
+    .logo-shield{
+        width:38px;
+        height:38px;
+    }
+
+    .welcome{
+        flex-direction:column;
+        align-items:flex-start;
+        min-height:auto;
+    }
+
+    .hero-shield{
+        align-self:center;
+        margin-top:10px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .right-col{
+        display:block;
+    }
+
+    .right-col > *{
+        margin-bottom:15px;
+    }
+
+    .scam-row{
+        grid-template-columns:1fr;
+    }
+
+    .big-score{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .scam-safety-box{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .scam-report-box{
+        padding:18px;
+    }
+
+    .report-number{
+        display:block;
+        width:max-content;
+    }
+
+    .scam-report-box small{
+        display:block;
+        margin:8px 0 0;
+    }
+
+    .login-box{
+        padding:30px 22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
+<div class="glow g3"></div>
+
+
+<!-- =========================================================
+     REGISTER SCREEN
+     ========================================================= -->
+
+<div id="registerScreen" class="login-screen">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="images/logo.svg" alt="DigitalShield Logo" width="40" height="40" style="vertical-align: middle;">
+        </div>
+        <h1>Digital<span>Shield</span></h1>
+        <p class="login-subtitle">Create your account.</p>
+
+        <div class="login-form">
+            <label>Full Name</label>
+            <input type="text" id="regName" placeholder="Enter your full name">
+
+            <label>Email</label>
+            <input type="email" id="regEmail" placeholder="Enter your email">
+
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" id="regPassword" placeholder="Create a password">
+                <button type="button" id="showRegPassword">Show</button>
+            </div>
+
+            <button type="button" class="login-btn" id="regBtn">Register →</button>
+            <p id="regMessage"></p>
+        </div>
+        
+        <div class="login-footer">
+            <a href="#" id="goToLogin" style="color: #6570e5; text-decoration: none; font-weight: bold;">Already have an account? Login</a><br><br>
+            DigitalShield • Digital Safety Awareness Project
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     LOGIN SCREEN
+     ========================================================= -->
+
+<div id="loginScreen" class="login-screen" style="display: none;">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="images/logo.svg" alt="DigitalShield Logo" width="40" height="40" style="vertical-align: middle;">
+        </div>
+        <h1>Digital<span>Shield</span></h1>
+        <p class="login-subtitle">Welcome back. Stay Safe.</p>
+
+        <div class="login-form">
+            <label>Email</label>
+            <input type="text" id="loginUser" placeholder="Enter your email">
+
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" id="loginPassword" placeholder="Enter your password">
+                <button type="button" id="showLoginPassword">Show</button>
+            </div>
+
+            <button type="button" class="login-btn" id="loginBtn">Login →</button>
+            <p id="loginMessage"></p>
+        </div>
+
+        <div class="login-footer">
+            <a href="#" id="goToRegister" style="color: #6570e5; text-decoration: none; font-weight: bold;">Need an account? Register</a><br><br>
+            DigitalShield • Digital Safety Awareness Project
+        </div>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+
+        <div class="logo-shield">
+            ✓
+        </div>
+
+        <div>
+
+            <h1>
+                Digital<span>Shield</span>
+            </h1>
+
+            <p>
+                Stay Safe. Think Digital.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav class="topnav">
+
+        <button class="top-link active" data-page="dashboard">
+            ⌂ <span>Home</span>
+        </button>
+
+        <button class="top-link" data-page="learning">
+            ▣ <span>Learning</span>
+        </button>
+
+        <button class="top-link" data-page="scam">
+            ♙ <span>Scam Detector</span>
+        </button>
+
+        <button class="top-link" data-page="url">
+            🔗 <span>URL Checker</span>
+        </button>
+
+        <button class="top-link" data-page="ai">
+            ✣ <span>AI &amp; Deepfake</span>
+        </button>
+
+    </nav>
+
+
+    <div class="profile">
+
+        <div class="theme">
+
+            <button id="themeBtn">
+                ☀️
+            </button>
+
+            <button>
+                ◐
+            </button>
+
+        </div>
+
+
+        <div class="avatar" id="avatar">
+            A
+        </div>
+
+
+        <div>
+
+            <b id="profileName">
+                Alex
+            </b>
+
+            <small>
+                <i></i>
+                Online
+            </small>
+
+        </div>
+
+
+        <button class="drop">
+            ⌄
+        </button>
+
+    </div>
+
+
+    <button class="hamb" id="hamb">
+        ☰
+    </button>
+
+</header>
+
+
+<!-- =========================================================
+     SIDEBAR
+     ========================================================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <button class="side-link active" data-page="dashboard">
+        <span>⌂</span>
+        Dashboard
+    </button>
+
+
+    <button class="side-link" data-page="learning">
+        <span>▥</span>
+        Learning Modules
+    </button>
+
+
+    <button class="side-link" data-page="quiz">
+        <span>♢</span>
+        Safety Quiz
+    </button>
+
+
+    <button class="side-link" data-page="scam">
+        <span>♙</span>
+        Scam Detector
+    </button>
+
+
+    <button class="side-link" data-page="url">
+        <span>🔗</span>
+        URL Checker
+    </button>
+
+
+    <button class="side-link" data-page="password">
+        <span>🔒</span>
+        Password Checker
+    </button>
+
+
+    <button class="side-link" data-page="social">
+        <span>♟</span>
+        Social Media Safety
+    </button>
+
+
+    <button class="side-link" data-page="awareness">
+        <span>⚠</span>
+        Scam Awareness
+    </button>
+
+
+    <button class="side-link" data-page="ai">
+        <span>♙</span>
+        AI &amp; Deepfake
+    </button>
+
+
+    <div class="side-bottom">
+
+        <button class="side-link" id="logout">
+            <span>⇥</span>
+            Logout
+        </button>
+
+        <p>
+            Better decisions.<br>
+            Safer tomorrow.
+        </p>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
+
+<main class="main">
+
+
+<!-- =========================================================
+     DASHBOARD
+     ========================================================= -->
+
+<section id="dashboard" class="page active">
+
+    <div class="dashboard-grid">
+
+        <div class="center-col">
+
+            <div class="welcome card">
+
+                <div class="welcome-text">
+
+                    <small>
+                        ▣ &nbsp; Welcome back,
+                    </small>
+
+                    <h2>
+                        <span id="helloName">Alex</span>! 👋
+                    </h2>
+
+                    <p>
+                        You're one step closer to a safer digital life.
+                    </p>
+
+
+                    <div class="stats">
+
+                        <div>
+                            📖
+                            <b>6</b>
+                            <small>Learning Modules</small>
+                        </div>
+
+                        <div>
+                            🛡️
+                            <b>8/10</b>
+                            <small>Quiz Score</small>
+                        </div>
+
+                        <div>
+                            ▣
+                            <b>Today</b>
+                            <small>Last Login</small>
+                        </div>
+
+                        <div>
+                            <em></em>
+                            <b>Active</b>
+                            <small>Account Status</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-shield">
+
+                    <div class="network"></div>
+
+                    <div class="big-shield">
+                        ✓
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>
+                        💡 New Generation Digital Tools
+                        <span>AI</span>
+                    </h2>
+
+                    <p>
+                        Smart tools to detect, protect and stay ahead of online threats.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="tools-grid">
+
+                <article class="tool-card">
+
+                    <div class="tool-icon purple">
+                        ♙
+                    </div>
+
+                    <h3>
+                        Smart Scam<br>
+                        Message Detector
+                    </h3>
+
+                    <p>
+                        Paste any suspicious message or email and find out if it contains common scam warning signs.
+                    </p>
+
+                    <button data-page="scam">
+                        Check Now →
+                    </button>
+
+                </article>
+
+
+                <article class="tool-card">
+
+                    <div class="tool-icon blue">
+                        🔗
+                    </div>
+
+                    <h3>
+                        Suspicious URL<br>
+                        Checker
+                    </h3>
+
+                    <p>
+                        Enter a link and check for basic warning signs before you click.
+                    </p>
+
+                    <button data-page="url">
+                        Check URL →
+                    </button>
+
+                </article>
+
+
+                <article class="tool-card">
+
+                    <div class="tool-icon green">
+                        ♧
+                    </div>
+
+                    <h3>
+                        Social Media<br>
+                        Safety
+                    </h3>
+
+                    <p>
+                        Check privacy settings and learn safer habits for social platforms.
+                    </p>
+
+                    <button data-page="social">
+                        Explore →
+                    </button>
+
+                </article>
+
+
+                <article class="tool-card">
+
+                    <div class="tool-icon violet">
+                        ✣
+                    </div>
+
+                    <h3>
+                        AI &amp; Deepfake<br>
+                        Awareness
+                    </h3>
+
+                    <p>
+                        Learn how to question suspicious videos, voices and AI-generated content.
+                    </p>
+
+                    <button data-page="ai">
+                        Explore →
+                    </button>
+
+                </article>
+
+            </div>
+
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>
+                        ⚠️ Scam Awareness Center
+                    </h2>
+
+                    <p>
+                        Stay alert. Avoid common online scams.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="scam-row">
+
+                <article>
+                    <img src="images/scam_payment.jpg" alt="Payment Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>Payment<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+                <article>
+                    <img src="images/scam_job.jpg" alt="Fake Job Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>Fake Job<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+                <article>
+                    <img src="images/scam_delivery.jpg" alt="Delivery Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>Delivery<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+                <article>
+                    <img src="images/scam_support.jpg" alt="Fake Support Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>Fake Support<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+                <article>
+                    <img src="images/scam_ai.jpg" alt="AI Impersonation Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>AI Impersonation<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+                <article>
+                    <img src="images/scam_otp.jpg" alt="OTP Scams" style="width: 48px; height: 48px; border-radius: 8px; margin-bottom: 8px;">
+                    <strong>OTP<br>Scams</strong>
+                    <a data-page="awareness">Learn More →</a>
+                </article>
+
+            </div>
+
+
+            <div class="quote card">
+
+                <div>
+                    🛡️
+                </div>
+
+                <div>
+
+                    <b>
+                        Small steps make a big difference.
+                    </b>
+
+                    <p>
+                        Be aware. Be safe. Be DigitalShield.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="right-col">
+
+            <div class="card tips">
+
+                <h2>
+                    💡 Quick Tips
+                </h2>
+
+                <p>
+                    🔐 &nbsp; Use strong, unique passwords
+                </p>
+
+                <p>
+                    🛡️ &nbsp; Enable two-factor authentication
+                </p>
+
+                <p>
+                    🚫 &nbsp; Don't share personal information
+                </p>
+
+                <p>
+                    🔗 &nbsp; Think before you click
+                </p>
+
+                <p>
+                    ⚙️ &nbsp; Keep your devices updated
+                </p>
+
+            </div>
+
+
+            <div class="promo">
+
+                <div>
+                    🛡️
+                </div>
+
+                <h2>
+                    Think Before You Click
+                    <br>
+                    <span>Stay One Step Ahead</span>
+                </h2>
+
+                <button data-page="learning">
+                    Explore All Features →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     LEARNING
+     ========================================================= -->
+
+<section id="learning" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Learning Modules
+        </h2>
+
+        <p>
+            Build simple habits that keep your digital life safer.
+        </p>
+
+    </div>
+
+
+    <div class="module-grid">
+
+        <article class="module">
+            <img src="images/scam_otp.jpg" alt="Password Safety" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+            <h3>Password Safety</h3>
+            <p>Create stronger, unhackable passwords and protect your critical personal accounts.</p>
+            <button data-page="password">Open Module →</button>
+        </article>
+
+        <article class="module">
+            <img src="images/social-privacy.svg" alt="Social Media Safety" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+            <h3>Social Media Safety</h3>
+            <p>Protect your private profiles, posts, identity and prevent account takeover scams.</p>
+            <button data-page="social">Open Module →</button>
+        </article>
+
+        <article class="module">
+            <img src="images/social-footprint.svg" alt="Digital Footprint" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+            <h3>Digital Footprint</h3>
+            <p>Understand the permanent data trails your browsing, geotags, and posts leave behind.</p>
+            <button data-page="social">Open Module →</button>
+        </article>
+
+        <article class="module">
+            <img src="images/digital-arrest.svg" alt="Scam Awareness" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+            <h3>Scam Awareness</h3>
+            <p>Recognize digital arrest threats, fake investment traps, and deceptive APK files.</p>
+            <button data-page="awareness">Open Module →</button>
+        </article>
+
+        <article class="module">
+            <img src="images/scam_ai.jpg" alt="AI Deepfake" style="width: 44px; height: 44px; border-radius: 10px; object-fit: cover; margin-bottom: 8px;">
+            <h3>AI &amp; Deepfake</h3>
+            <p>Learn practical, modern ways to identify cloned voices, face swaps and generated scams.</p>
+            <button data-page="ai">Open Module →</button>
+        </article>
+
+        <article class="module">
+            <img src="images/logo.svg" alt="Safety Quiz" style="width: 44px; height: 44px; border-radius: 10px; object-fit: contain; background: linear-gradient(135deg, #2563eb, #7c3aed); padding: 8px; margin-bottom: 8px;">
+            <h3>Cyber Safety Quiz</h3>
+            <p>Test your knowledge with 20 real-world interactive cyber safety scenario questions.</p>
+            <button data-page="quiz">Start Quiz (20 Qs) →</button>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PASSWORD CHECKER
+     ========================================================= -->
+
+<section id="password" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Password Checker
+        </h2>
+
+        <p>
+            Test a password locally in your browser. Nothing is sent anywhere.
+        </p>
+
+    </div>
+
+
+    <div class="checker card">
+
+        <input
+            id="pwdInput"
+            type="password"
+            placeholder="Type a password"
+        >
+
+        <button id="showPwd">
+            Show
+        </button>
+
+
+        <div class="meter">
+            <i id="pwdBar"></i>
+        </div>
+
+
+        <h3 id="pwdResult">
+            Start typing to check strength
+        </h3>
+
+
+        <ul id="pwdRules">
+
+            <li>
+                At least 8 characters
+            </li>
+
+            <li>
+                Uppercase and lowercase letters
+            </li>
+
+            <li>
+                A number
+            </li>
+
+            <li>
+                A special character
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SCAM DETECTOR
+     ========================================================= -->
+
+<section id="scam" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Smart Scam Detector
+        </h2>
+
+        <p>
+            Paste a suspicious message to get an educational risk check.
+        </p>
+
+    </div>
+
+
+    <div class="checker card">
+
+        <textarea
+            id="scamText"
+            placeholder="Paste a suspicious message here..."
+        ></textarea>
+
+
+        <button
+            class="primary"
+            id="scanBtn"
+        >
+            Analyze Message
+        </button>
+
+
+        <div
+            id="scanResult"
+            class="result"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     URL CHECKER
+     ========================================================= -->
+
+<section id="url" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Suspicious URL Checker
+        </h2>
+
+        <p>
+            Basic browser-only checks for common warning signs.
+        </p>
+
+    </div>
+
+
+    <div class="checker card">
+
+        <input
+            id="urlInput"
+            placeholder="https://example.com"
+        >
+
+
+        <button
+            class="primary"
+            id="urlBtn"
+        >
+            Check URL
+        </button>
+
+
+        <div
+            id="urlResult"
+            class="result"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOCIAL MEDIA SAFETY
+     ========================================================= -->
+
+<section id="social" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Social Media Safety
+        </h2>
+
+        <p>
+            Quick habits for safer social accounts.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <!-- 1. PRIVACY & PROFILE CONTROL -->
+        <div class="info card scam-info-card">
+            <div class="card-banner">
+                <img src="images/social-privacy.svg" alt="Social Media Privacy Settings">
+            </div>
+
+            <span class="scam-tag red">ACCOUNT PRIVACY</span>
+
+            <h3>Social Media Privacy &amp; Profile Control</h3>
+
+            <p>
+                By default, most social platforms (Instagram, Facebook, Snapchat, X) keep your account public. Anyone can see your friends list, posts, travel photos, family pictures, and tag you in malicious scams without your permission.
+            </p>
+
+            <ul>
+                <li>🔒 <strong>Private Account:</strong> Switch personal profiles to "Private" so only people you explicitly approve can view your posts and stories.</li>
+                <li>🚫 <strong>Hide Sensitive Details:</strong> Never display your phone number, personal email, home address, or birthday year publicly on your profile bio.</li>
+                <li>👥 <strong>Story &amp; Post Audience:</strong> Utilize "Close Friends" features on Instagram or custom privacy lists on Facebook for personal family updates.</li>
+                <li>🔍 <strong>Search &amp; Tagging Restrictions:</strong> Disable search engine indexing of your profile and require manual review for photo tags.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>Action Steps:</b> Go to Settings → Privacy → Account Privacy → Turn on "Private Account". Under "Tags &amp; Mentions", select "Don't allow tags" or require approval.
+            </div>
+        </div>
+
+
+        <!-- 2. TWO-FACTOR AUTHENTICATION & LOGIN SECURITY -->
+        <div class="info card scam-info-card">
+            <div class="card-banner">
+                <img src="images/social-security.svg" alt="Two-Factor Authentication Security">
+            </div>
+
+            <span class="scam-tag orange">LOGIN DEFENSE</span>
+
+            <h3>2FA &amp; Account Takeover Prevention</h3>
+
+            <p>
+                Account hacking and takeover scams are surging. Scammers send phishing links like "Your copyright was violated" or "Someone is using your photos" to steal your password and lock you out permanently.
+            </p>
+
+            <ul>
+                <li>🛡️ <strong>Enable Authenticator 2FA:</strong> Don't rely solely on SMS OTP (vulnerable to SIM swap). Use Google Authenticator, Authy, or Microsoft Authenticator.</li>
+                <li>⚠️ <strong>Phishing Alerts:</strong> Platforms NEVER send direct messages (DMs) claiming copyright violations or asking for your password. Official notices appear in Settings.</li>
+                <li>📱 <strong>Active Session Review:</strong> Regularly check "Where You're Logged In" in Settings and log out from unfamiliar devices or browsers immediately.</li>
+                <li>🔑 <strong>Unique Passwords:</strong> Never use the same password for Instagram, email, and banking. A breach on one exposes all of them.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>Action Steps:</b> Go to Settings → Accounts Center → Password and Security → Two-Factor Authentication → Select Authenticator App and save backup codes safely.
+            </div>
+        </div>
+
+
+        <!-- 3. FAKE ACCOUNTS & IMPERSONATION -->
+        <div class="info card scam-info-card">
+            <div class="card-banner">
+                <img src="images/social-impersonation.svg" alt="Fake Accounts & Identity Theft">
+            </div>
+
+            <span class="scam-tag pink">IMPERSONATION &amp; CLONES</span>
+
+            <h3>Fake Profiles, Cloning &amp; DM Scams</h3>
+
+            <p>
+                Cybercriminals frequently clone profiles by copying profile pictures and bios of your friends, then sending frantic messages like "My account got locked, please click this link" or "Can you lend me urgent money?".
+            </p>
+
+            <ul>
+                <li>🧐 <strong>Spot Cloned Accounts:</strong> Check the username carefully for subtle spelling changes (e.g., extra underscores, zero instead of letter 'O', or missing letters).</li>
+                <li>📞 <strong>Verify Before Responding:</strong> If a friend contacts you from a "new account" asking for emergency funds, call them directly on their original number.</li>
+                <li>🗳️ <strong>Voting &amp; Contest Scams:</strong> Never click on "Vote for my photography entry" or "Help me become an ambassador" links received in Instagram/Snapchat DMs.</li>
+                <li>🚫 <strong>Report Immediately:</strong> Use the in-app "Report → Pretending to be someone I know" option so platform AI can remove the malicious clone.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>Action Steps:</b> Never send money or verification codes to ANY follower through DMs. Always report and block fraudulent clone accounts immediately.
+            </div>
+        </div>
+
+
+        <!-- 4. DIGITAL FOOTPRINT & OVERSHARING -->
+        <div class="info card scam-info-card">
+            <div class="card-banner">
+                <img src="images/social-footprint.svg" alt="Digital Footprint and Oversharing">
+            </div>
+
+            <span class="scam-tag yellow">DATA EXPOSURE</span>
+
+            <h3>Digital Footprint &amp; Location Oversharing</h3>
+
+            <p>
+                Everything you upload creates a permanent digital footprint. Burglars and stalkers exploit live check-ins, while identity thieves collect pieces of your identity from daily stories and photo metadata.
+            </p>
+
+            <ul>
+                <li>📍 <strong>Delay Location Tagging:</strong> Never post stories or photos with live GPS tags while you are still at the airport, school, hotel, or private residence. Post after leaving!</li>
+                <li>🎫 <strong>Boarding Pass &amp; Ticket Danger:</strong> Boarding pass barcodes contain full names, passport numbers, and flight booking details. Never post photos of tickets or keys!</li>
+                <li>👶 <strong>Protecting Minors &amp; Family:</strong> Avoid posting school uniforms, daily commute routines, or birth certificates that expose kids to predatory threats.</li>
+                <li>🧹 <strong>Audit Past Posts:</strong> Regularly delete old posts, comments, and untag yourself from photos that disclose sensitive historical information.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>Action Steps:</b> Turn off camera geotagging in your phone settings. Post holiday photos after you return home to prevent home burglary risks.
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- SOCIAL MEDIA SAFETY SUMMARY ADVICE BOX -->
+    <div class="scam-safety-box" style="margin-top: 25px;">
+
+        <div class="scam-safety-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <h3>
+                Golden Rule of Social Media Safety
+            </h3>
+
+            <p>
+                "If you wouldn't paste it on a physical billboard on your city's main street, DO NOT post it online."
+            </p>
+
+            <strong>
+                PAUSE → CHECK AUDIENCE → REMOVE SENSITIVE METADATA → POST SAFELY
+            </strong>
+
+        </div>
+
+    </div>
+
+
+<!-- =========================================================
+     FIX: SOCIAL SECTION CLOSED HERE
+     ========================================================= -->
+
+</section>
+
+
+<!-- =========================================================
+     SCAM AWARENESS - UPDATED
+     ========================================================= -->
+
+<section id="awareness" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Scam Awareness
+        </h2>
+
+        <p>
+            Pause, verify and never share sensitive information under pressure.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+
+        <!-- DIGITAL ARREST -->
+
+        <div class="info card scam-info-card">
+
+            <div class="scam-image">
+                <img src="images/digital-arrest.svg" alt="Digital Arrest">
+            </div>
+
+            <span class="scam-tag red">
+                DIGITAL SAFETY
+            </span>
+
+            <h3>
+                Digital Arrest Scam Awareness
+            </h3>
+
+            <p>
+                Scammers may pretend to be police, CBI, RBI or other government officials on a video call. They create fake sets resembling police stations and create immense fear to demand money, claiming your Aadhaar or phone number is involved in illegal activities.
+            </p>
+
+            <ul>
+                <li>❌ <strong>Fact:</strong> There is no concept of “Digital Arrest” under Indian law. Police will not arrest you over Skype or WhatsApp.</li>
+                <li>📞 <strong>Action:</strong> Disconnect the video call immediately. Do not stay on the line under pressure.</li>
+                <li>🔐 <strong>Security:</strong> Never transfer funds to "safe accounts" or share OTPs, passwords, or banking details.</li>
+                <li>✅ <strong>Verify:</strong> Always visit your local police station or check the official portal directly.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>How to protect:</b>
+                Stop, verify independently and do not send money because of threats. Real law enforcement does not demand money to drop charges over a call.
+            </div>
+
+        </div>
+
+
+        <!-- SUSPICIOUS FILES -->
+
+        <div class="info card scam-info-card">
+
+            <div class="scam-image">
+                <img src="images/whatsapp-boss-scam.svg" alt="Suspicious Messages">
+            </div>
+
+            <span class="scam-tag orange">
+                MESSAGES &amp; FILES
+            </span>
+
+            <h3>
+                Suspicious Files and Messages
+            </h3>
+
+            <p>
+                Unexpected messages on WhatsApp, Telegram or SMS containing links or APK files can be used to install malware on your phone, steal banking credentials, or hijack your accounts.
+            </p>
+
+            <ul>
+                <li>📩 <strong>Alertness:</strong> Be highly careful with unexpected messages, even if they appear to be from a friend or boss asking for urgent help.</li>
+                <li>📦 <strong>Downloads:</strong> Do not download or install unknown APK files, as they bypass official app store security.</li>
+                <li>🔗 <strong>Links:</strong> Avoid clicking on suspicious links offering free gifts, lottery wins, or urgent account updates.</li>
+                <li>🔎 <strong>Confirm:</strong> Call the person directly on their standard phone number to confirm if they actually sent the message.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>How to protect:</b>
+                Stop and verify the sender before opening files or clicking links. Install apps only from the official Google Play Store or Apple App Store.
+            </div>
+
+        </div>
+
+
+        <!-- INVESTMENT -->
+
+        <div class="info card scam-info-card">
+
+            <div class="scam-image">
+                <img src="images/fake-investment.svg" alt="Fake Investment">
+            </div>
+
+            <span class="scam-tag pink">
+                INVESTMENT
+            </span>
+
+            <h3>
+                Fake Investment Offers
+            </h3>
+
+            <p>
+                Fraudsters use social media ads, messaging apps, and fake "trading groups" (often on Telegram or WhatsApp) to promote unrealistic investment returns in stocks, crypto, or forex.
+            </p>
+
+            <ul>
+                <li>💰 <strong>Skepticism:</strong> Be highly suspicious of guaranteed or massive returns with little to no risk. If it sounds too good to be true, it is.</li>
+                <li>📱 <strong>Groups:</strong> Do not trust random investment groups where everyone seems to be making huge profits (these are often fake accounts).</li>
+                <li>🔐 <strong>Privacy:</strong> Never share banking details, PAN card, or login details with unverified brokers.</li>
+                <li>🔎 <strong>Research:</strong> Verify that the investment platform or broker is registered with SEBI or relevant authorities.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>How to protect:</b>
+                Research independently before making any payment or investment. Start small, and never invest money you cannot afford to lose based on a social media tip.
+            </div>
+
+        </div>
+
+
+        <!-- GOVERNMENT EMAIL -->
+
+        <div class="info card scam-info-card">
+
+            <div class="scam-image">
+                <img src="images/fake-government-mail.svg" alt="Government Email">
+            </div>
+
+            <span class="scam-tag yellow">
+                FAKE GOVERNMENT EMAILS
+            </span>
+
+            <h3>
+                Government Impersonation Emails
+            </h3>
+
+            <p>
+                Fake emails may use official government names (like Income Tax Dept, UIDAI, Traffic Police), logos, and threatening language (e.g., "Your PAN will be blocked") to create panic.
+            </p>
+
+            <ul>
+                <li>📧 <strong>Sender Check:</strong> Carefully examine the sender's email address. Official emails usually end in `.gov.in` or `.nic.in`, not `@gmail.com` or weird domains.</li>
+                <li>⚠️ <strong>Stay Calm:</strong> Scammers use urgency to force mistakes. Do not panic because of threatening language.</li>
+                <li>🔗 <strong>No Clicks:</strong> Do not blindly open links or download attachments (like fake tax refund forms) in unexpected emails.</li>
+                <li>🌐 <strong>Direct Access:</strong> Instead of clicking the link, type the official government website URL directly into your browser to check your account status.</li>
+            </ul>
+
+            <div class="how-protect">
+                <b>How to protect:</b>
+                Do not trust an official-looking logo alone. Always verify independently through official websites or customer care numbers.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 5 SECOND RULE -->
+
+    <div class="scam-safety-box">
+
+        <div class="scam-safety-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <h3>
+                5-Second Safety Rule
+            </h3>
+
+            <p>
+                Before clicking, paying, downloading or sharing information:
+            </p>
+
+            <strong>
+                STOP → CHECK → VERIFY → THEN ACT
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- REPORT -->
+
+    <div class="scam-report-box">
+
+        <h3>
+            🚨 If you face an online financial fraud
+        </h3>
+
+        <p>
+            Report cyber financial fraud immediately through the National Cyber
+            Crime Reporting Portal or call the cybercrime helpline.
+        </p>
+
+        <div class="report-number">
+            📞 1930
+        </div>
+
+        <small>
+            National Cyber Crime Helpline
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     AI & DEEPFAKE
+     ========================================================= -->
+
+<section id="ai" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            AI &amp; Deepfake Awareness
+        </h2>
+
+        <p>
+            AI-generated content can look convincing. Verify before trusting or sharing.
+        </p>
+
+    </div>
+
+
+    <div class="card" style="padding: 20px; margin-bottom: 25px; border-radius: 18px; overflow: hidden;">
+
+        <div class="card-banner" style="height: 180px; margin-bottom: 20px;">
+
+            <img
+                src="images/ai-deepfake-banner.svg"
+                alt="AI & Deepfake Awareness Banner"
+            >
+
+        </div>
+
+        <h3 style="color: #24527d; font-size: 20px; margin-bottom: 8px;">
+            Understanding Generative AI &amp; Voice Clone Fraud
+        </h3>
+
+        <p style="color: #64839e; font-size: 13px; line-height: 1.6;">
+            Modern AI can clone any person's voice from just a 3-second audio sample and generate hyper-realistic videos of real public figures or relatives asking for urgent money. Learn how to verify before reacting.
+        </p>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <div class="info card scam-info-card">
+
+            <span class="scam-tag red">
+                AUDIO FRAUD
+            </span>
+
+            <h3>
+                AI Voice Cloning Scams
+            </h3>
+
+            <p>
+                Scammers call parents or grandparents using a cloned voice of their child, crying and claiming they were arrested or in an accident and need immediate bail funds.
+            </p>
+
+            <ul>
+                <li>🚨 <strong>Ask a Secret Question:</strong> Establish a family security passphrase that only real family members know.</li>
+                <li>📞 <strong>Hang Up &amp; Call Back:</strong> Never send money immediately. Disconnect and call the family member directly on their regular phone.</li>
+                <li>🤖 <strong>Listen for Unnatural Breathing:</strong> AI voices often have unnatural pacing, robotic breathing, or lack true background noise.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="info card scam-info-card">
+
+            <span class="scam-tag orange">
+                VIDEO MANIPULATION
+            </span>
+
+            <h3>
+                Video Face Swaps &amp; Digital Arrests
+            </h3>
+
+            <p>
+                Deepfake video filters are used by scammers on WhatsApp and Skype video calls to appear wearing real police uniforms or sitting inside authentic government offices.
+            </p>
+
+            <ul>
+                <li>👀 <strong>Check Blinking &amp; Eye Movement:</strong> Many deepfakes struggle with natural eye blinking and realistic iris reflections.</li>
+                <li>👤 <strong>Observe Jawlines &amp; Shadows:</strong> Watch the border of the face and neck when the speaker turns their head. Distortions or glitching indicate face swaps.</li>
+                <li>✋ <strong>Request a Physical Movement:</strong> Ask the person on the video to wave their hand in front of their face. AI filters often break during rapid occlusion.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="info card scam-info-card">
+
+            <span class="scam-tag pink">
+                SYNTHETIC MEDIA
+            </span>
+
+            <h3>
+                Fake Celebrity Endorsements
+            </h3>
+
+            <p>
+                Scammers use AI to sync the lips of famous business leaders, actors, and political figures promoting get-rich-quick crypto or trading schemes on Facebook and YouTube.
+            </p>
+
+            <ul>
+                <li>👄 <strong>Lip Sync Discrepancies:</strong> Notice if the spoken audio slightly mismatches the lip movement or syllables.</li>
+                <li>🔗 <strong>Scrutinize the Website Link:</strong> Official endorsements will lead to verified brand websites, never strange third-party domains.</li>
+                <li>📢 <strong>Cross-Check Legitimate News:</strong> If a celebrity made a massive investment announcement, reputable news networks would report it.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="info card scam-info-card">
+
+            <span class="scam-tag yellow">
+                ETHICAL DEFENSE
+            </span>
+
+            <h3>
+                Stopping Misinformation &amp; Hoaxes
+            </h3>
+
+            <p>
+                Viral sensational news, emergency evacuation orders, or manipulated political statements are often designed to cause social chaos and panic.
+            </p>
+
+            <ul>
+                <li>⏳ <strong>The 60-Second Pause:</strong> If a video triggers intense anger, fear, or excitement, pause before hitting "Forward".</li>
+                <li>🔍 <strong>Reverse Image Search:</strong> Take a screenshot of the video frame and search on Google Lens to find the original untampered video.</li>
+                <li>🛡️ <strong>Fact-Checking Portals:</strong> Verify claims on official government fact-checking handles (like PIB Fact Check in India).</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUIZ
+     ========================================================= -->
+
+<section id="quiz" class="page">
+
+    <div class="page-title">
+
+        <h2>
+            Safety Quiz
+        </h2>
+
+        <p>
+            Answer 20 quick awareness questions.
+        </p>
+
+    </div>
+
+
+    <div class="quiz card">
+
+        <div id="qText"></div>
+
+        <div id="qOptions"></div>
+
+        <button
+            class="primary"
+            id="nextQ"
+        >
+            Next Question →
+        </button>
+
+        <div id="quizResult"></div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer>
+
+    © 2026 DigitalShield
+    &nbsp; • &nbsp;
+    Digital Safety Awareness Project
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   PAGE NAVIGATION
+   ========================================================= */
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
+
+const pages = [...$$(".page")];
+
+
+function go(page){
+
+    pages.forEach(p => {
+
+        p.classList.toggle(
+            "active",
+            p.id === page
+        );
+
+    });
+
+
+    $$("[data-page]").forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.page === page
+        );
+
+    });
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    const sidebar = $("#sidebar");
+
+    if(sidebar){
+        sidebar.classList.remove("open");
+    }
+
+}
+
+
+/* NAVIGATION BUTTONS */
+
+document.addEventListener("click",function(event){
+
+    const button = event.target.closest("[data-page]");
+
+    if(!button){
+        return;
+    }
+
+    go(button.dataset.page);
+
+});
+
+
+/* =========================================================
+   HAMBURGER
+   ========================================================= */
+
+const hamb = $("#hamb");
+
+if(hamb){
+
+    hamb.addEventListener("click",function(){
+
+        $("#sidebar").classList.toggle("open");
+
+    });
+
+}
+
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+const themeBtn = $("#themeBtn");
+
+if(themeBtn){
+
+    themeBtn.addEventListener("click",function(){
+
+        document.body.classList.toggle("light");
+
+    });
+
+}
+
+
+/* =========================================================
+   AUTH (REGISTER & LOGIN)
+   ========================================================= */
+
+const registerScreen = $("#registerScreen");
+const loginScreen = $("#loginScreen");
+
+
+/* --- Registration --- */
+
+const regBtn = $("#regBtn");
+const regName = $("#regName");
+const regEmail = $("#regEmail");
+const regPassword = $("#regPassword");
+const regMessage = $("#regMessage");
+
+function doRegister(){
+
+    if(
+        regName.value.trim() === "" ||
+        regEmail.value.trim() === "" ||
+        regPassword.value.trim() === ""
+    ){
+
+        regMessage.textContent =
+            "Please fill out all fields.";
+
+        regMessage.style.color =
+            "#df536a";
+
+        return;
+
+    }
+
+
+    regMessage.textContent =
+        "Registration successful! Redirecting to login...";
+
+    regMessage.style.color =
+        "#29a77f";
+
+
+    $("#loginUser").value =
+        regEmail.value.trim();
+
+
+    setTimeout(function(){
+
+        registerScreen.style.display =
+            "none";
+
+        loginScreen.style.display =
+            "flex";
+
+    },1000);
+
+}
+
+
+if(regBtn)
+    regBtn.addEventListener(
+        "click",
+        doRegister
+    );
+
+
+if(regPassword){
+
+    regPassword.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter")
+                doRegister();
+
+        }
+    );
+
+}
+
+
+const showRegPassword =
+    $("#showRegPassword");
+
+
+if(showRegPassword){
+
+    showRegPassword.addEventListener(
+        "click",
+        function(){
+
+            if(regPassword.type === "password"){
+
+                regPassword.type =
+                    "text";
+
+                this.textContent =
+                    "Hide";
+
+            }else{
+
+                regPassword.type =
+                    "password";
+
+                this.textContent =
+                    "Show";
+
+            }
+
+        }
+    );
+
+}
+
+
+const goToLogin =
+    $("#goToLogin");
+
+
+if(goToLogin){
+
+    goToLogin.addEventListener(
+        "click",
+        function(e){
+
+            e.preventDefault();
+
+            registerScreen.style.display =
+                "none";
+
+            loginScreen.style.display =
+                "flex";
+
+        }
+    );
+
+}
+
+
+/* --- Login --- */
+
+const loginBtn = $("#loginBtn");
+const loginUser = $("#loginUser");
+const loginPassword = $("#loginPassword");
+const loginMessage = $("#loginMessage");
+
+
+function doLogin(){
+
+    const username =
+        loginUser.value.trim();
+
+    const password =
+        loginPassword.value.trim();
+
+
+    if(username === "" || password === ""){
+
+        loginMessage.textContent =
+            "Please enter email and password.";
+
+        loginMessage.style.color =
+            "#df536a";
+
+        return;
+
+    }
+
+
+    loginMessage.textContent =
+        "Login successful ✓";
+
+    loginMessage.style.color =
+        "#29a77f";
+
+
+    let displayName =
+        username;
+
+
+    if(username.includes("@")){
+
+        displayName =
+            username.split("@")[0];
+
+    }
+
+
+    if(
+        regName &&
+        regName.value.trim() !== "" &&
+        username === regEmail.value.trim()
+    ){
+
+        displayName =
+            regName.value.trim().split(" ")[0];
+
+    }
+
+
+    displayName =
+        displayName.charAt(0).toUpperCase()
+        +
+        displayName.slice(1);
+
+
+    $("#profileName").textContent =
+        displayName;
+
+    $("#helloName").textContent =
+        displayName;
+
+    $("#avatar").textContent =
+        displayName.charAt(0).toUpperCase();
+
+
+    setTimeout(function(){
+
+        loginScreen.style.display =
+            "none";
+
+        registerScreen.style.display =
+            "none";
+
+        document.body.style.overflow =
+            "";
+
+    },700);
+
+}
+
+
+if(loginBtn)
+    loginBtn.addEventListener(
+        "click",
+        doLogin
+    );
+
+
+if(loginPassword){
+
+    loginPassword.addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key === "Enter")
+                doLogin();
+
+        }
+    );
+
+}
+
+
+const showLoginPassword =
+    $("#showLoginPassword");
+
+
+if(showLoginPassword){
+
+    showLoginPassword.addEventListener(
+        "click",
+        function(){
+
+            if(loginPassword.type === "password"){
+
+                loginPassword.type =
+                    "text";
+
+                this.textContent =
+                    "Hide";
+
+            }else{
+
+                loginPassword.type =
+                    "password";
+
+                this.textContent =
+                    "Show";
+
+            }
+
+        }
+    );
+
+}
+
+
+const goToRegister =
+    $("#goToRegister");
+
+
+if(goToRegister){
+
+    goToRegister.addEventListener(
+        "click",
+        function(e){
+
+            e.preventDefault();
+
+            loginScreen.style.display =
+                "none";
+
+            registerScreen.style.display =
+                "flex";
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+$("#logout").addEventListener(
+    "click",
+    function(){
+
+        registerScreen.style.display =
+            "flex";
+
+        loginScreen.style.display =
+            "none";
+
+        loginUser.value =
+            "";
+
+        loginPassword.value =
+            "";
+
+        loginMessage.textContent =
+            "";
+
+        regName.value =
+            "";
+
+        regEmail.value =
+            "";
+
+        regPassword.value =
+            "";
+
+        regMessage.textContent =
+            "";
+
+        go("dashboard");
+
+    }
+);
+
+
+/* =========================================================
+   PASSWORD CHECKER
+   ========================================================= */
+
+const pwd = $("#pwdInput");
+const bar = $("#pwdBar");
+const res = $("#pwdResult");
+const show = $("#showPwd");
+
+
+function checkPwd(){
+
+    const value =
+        pwd.value;
+
+    let strength = 0;
+
+
+    if(value.length >= 8){
+        strength++;
+    }
+
+
+    if(
+        /[a-z]/.test(value)
+        &&
+        /[A-Z]/.test(value)
+    ){
+        strength++;
+    }
+
+
+    if(/\d/.test(value)){
+        strength++;
+    }
+
+
+    if(/[^A-Za-z0-9]/.test(value)){
+        strength++;
+    }
+
+
+    if(value.length >= 14){
+        strength++;
+    }
+
+
+    bar.style.width =
+        (strength * 20) + "%";
+
+
+    const names = [
+        "Very weak",
+        "Weak",
+        "Fair",
+        "Strong",
+        "Very strong"
+    ];
+
+
+    res.textContent =
+        value
+        ?
+        names[Math.max(0,strength - 1)]
+        + " password"
+        :
+        "Start typing to check strength";
+
+}
+
+
+pwd.addEventListener(
+    "input",
+    checkPwd
+);
+
+
+show.addEventListener(
+    "click",
+    function(){
+
+        pwd.type =
+            pwd.type === "password"
+            ?
+            "text"
+            :
+            "password";
+
+
+        show.textContent =
+            pwd.type === "password"
+            ?
+            "Show"
+            :
+            "Hide";
+
+    }
+);
+
+
+/* =========================================================
+   SCAM DETECTOR
+   ========================================================= */
+
+$("#scanBtn").addEventListener(
+    "click",
+    function(){
+
+        const text =
+            $("#scamText").value.toLowerCase();
+
+
+        let hits = 0;
+
+
+        const words = [
+
+            "urgent",
+            "otp",
+            "password",
+            "verify",
+            "click",
+            "prize",
+            "winner",
+            "payment",
+            "refund",
+            "account blocked",
+            "police",
+            "arrest",
+            "investment",
+            "fee"
+
+        ];
+
+
+        words.forEach(function(word){
+
+            if(text.includes(word)){
+
+                hits++;
+
+            }
+
+        });
+
+
+        const result =
+            $("#scanResult");
+
+
+        result.className =
+            "result show";
+
+
+        if(hits >= 3){
+
+            result.innerHTML =
+                "⚠️ <b>High warning signs:</b> " +
+                "The message contains several common scam patterns. " +
+                "Do not share sensitive information; verify through an official channel.";
+
+        }else if(hits){
+
+            result.innerHTML =
+                "🟡 <b>Some warning signs:</b> " +
+                "Slow down and verify the sender, link and request independently.";
+
+        }else{
+
+            result.innerHTML =
+                "🟢 <b>No obvious keyword warning found:</b> " +
+                "Still verify the sender and context before taking action.";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   URL CHECKER
+   ========================================================= */
+
+$("#urlBtn").addEventListener(
+    "click",
+    function(){
+
+        const value =
+            $("#urlInput").value.trim();
+
+
+        const result =
+            $("#urlResult");
+
+
+        result.className =
+            "result show";
+
+
+        if(!value){
+
+            result.textContent =
+                "Enter a URL first.";
+
+            return;
+
+        }
+
+
+        try{
+
+            const url =
+                new URL(value);
+
+
+            const warning =
+
+                ![
+                    "http:",
+                    "https:"
+                ].includes(url.protocol)
+
+                ||
+
+                url.hostname.includes("@")
+
+                ||
+
+                /\d{1,3}(\.\d{1,3}){3}/
+                .test(url.hostname);
+
+
+            if(warning){
+
+                result.innerHTML =
+                    "⚠️ <b>Be careful:</b> " +
+                    "This URL has warning signs. " +
+                    "Do not enter passwords or payment details.";
+
+            }else{
+
+                result.innerHTML =
+                    "🟢 <b>Basic check passed:</b> " +
+                    "The URL uses a normal web protocol. " +
+                    "This does not guarantee that the site is safe.";
+
+            }
+
+        }catch(error){
+
+            result.textContent =
+                "⚠️ That does not look like a valid URL.";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+
+const questions = [
+
+    [
+        "What should you do with an unexpected OTP request?",
+        [
+            "Share it",
+            "Ignore/verify it",
+            "Post it online",
+            "Forward it"
+        ],
+        1
+    ],
+
+    [
+        "Which password is safer?",
+        [
+            "password123",
+            "MyName2000",
+            "A long unique passphrase",
+            "12345678"
+        ],
+        2
+    ],
+
+    [
+        "What is 2FA used for?",
+        [
+            "Extra account protection",
+            "Faster Wi-Fi",
+            "More storage",
+            "Screen brightness"
+        ],
+        0
+    ],
+
+    [
+        "A suspicious link asks you to act urgently. What is best?",
+        [
+            "Click quickly",
+            "Verify independently",
+            "Send it to friends",
+            "Enter your OTP"
+        ],
+        1
+    ],
+
+    [
+        "What should you do before sharing personal information online?",
+        [
+            "Think about who needs it",
+            "Share everything",
+            "Use public Wi-Fi only",
+            "Send it to strangers"
+        ],
+        0
+    ],
+
+    [
+        "What is phishing?",
+        [
+            "A fishing game",
+            "Tricking you into revealing sensitive info",
+            "Fixing a computer bug",
+            "Upgrading software"
+        ],
+        1
+    ],
+
+    [
+        "Which of these is a sign of a fake website?",
+        [
+            "Poor spelling/grammar & strange URL",
+            "A valid padlock icon",
+            "Clear customer service number",
+            "Fast loading speed"
+        ],
+        0
+    ],
+
+    [
+        "What does 'https' indicate in a web URL?",
+        [
+            "Happy To Talk",
+            "Encrypted/secure connection",
+            "Fast streaming video",
+            "Public open Wi-Fi network"
+        ],
+        1
+    ],
+
+    [
+        "How often should you update your phone and app software?",
+        [
+            "Never",
+            "Once every 5 years",
+            "As soon as official security updates arrive",
+            "Only when buying a new phone"
+        ],
+        2
+    ],
+
+    [
+        "What is malware?",
+        [
+            "Computer hardware",
+            "An antivirus firewall",
+            "Malicious software (viruses, trojans, spyware)",
+            "An online shopping site"
+        ],
+        2
+    ],
+
+    [
+        "Is it safe to do net banking or enter passwords on public open Wi-Fi?",
+        [
+            "Yes, always safe",
+            "No, it's risky and can be intercepted",
+            "Only on weekends",
+            "Yes, if the Wi-Fi is free"
+        ],
+        1
+    ],
+
+    [
+        "What is social engineering?",
+        [
+            "Civil engineering",
+            "Manipulating and tricking people into giving private data",
+            "Social media marketing",
+            "Making friends online"
+        ],
+        1
+    ],
+
+    [
+        "Why should you never reuse the same password on multiple websites?",
+        [
+            "It uses too much memory",
+            "Hard to type",
+            "A breach on one site compromises all your accounts",
+            "It is illegal"
+        ],
+        2
+    ],
+
+    [
+        "What is a 'Digital Arrest' scam?",
+        [
+            "A legitimate police procedure",
+            "A fake police video call threatening arrest to extort money",
+            "A digital court order",
+            "An online government fine"
+        ],
+        1
+    ],
+
+    [
+        "What should you do if an unknown number WhatsApps you claiming to be your boss/relative in distress?",
+        [
+            "Send money immediately",
+            "Call their known real phone number directly to verify",
+            "Block them and throw your phone",
+            "Forward the request to friends"
+        ],
+        1
+    ],
+
+    [
+        "What is the safest way to store complex passwords?",
+        [
+            "On a paper sticky note on your monitor",
+            "In an unencrypted text file",
+            "In a reputable password manager",
+            "In your email drafts folder"
+        ],
+        2
+    ],
+
+    [
+        "How do you spot a fake work-from-home job scam?",
+        [
+            "They ask for an upfront registration/training fee",
+            "They conduct rigorous technical interviews",
+            "They offer standard market salary",
+            "They check your references"
+        ],
+        0
+    ],
+
+    [
+        "What should you check before installing an APK file sent via chat?",
+        [
+            "Nothing, install it right away",
+            "Avoid installing third-party APKs completely; use official app stores",
+            "Check if the file icon is colorful",
+            "Turn off your phone screen"
+        ],
+        1
+    ],
+
+    [
+        "Why do scammers always create extreme urgency ('Act within 10 minutes!')?",
+        [
+            "Because their server is closing",
+            "To make you panic and act before thinking rationally",
+            "To provide quick customer care",
+            "To give discounts"
+        ],
+        1
+    ],
+
+    [
+        "What is an AI deepfake?",
+        [
+            "A deep dive into AI algorithms",
+            "AI-generated fake audio, video, or photo impersonating real people",
+            "A strong encrypted password",
+            "A secure operating system"
+        ],
+        1
+    ]
+
+];
+
+
+let questionIndex = 0;
+let score = 0;
+
+
+function renderQuestion(){
+
+    const question =
+        questions[questionIndex];
+
+
+    $("#qText").textContent =
+        (questionIndex + 1)
+        + ". "
+        + question[0];
+
+
+    $("#qOptions").innerHTML =
+        question[1]
+        .map(function(option,index){
+
+            return `
+                <label>
+                    <input
+                        type="radio"
+                        name="q"
+                        value="${index}"
+                    >
+                    ${option}
+                </label>
+            `;
+
+        })
+        .join("");
+
+
+    $("#nextQ").textContent =
+        questionIndex === questions.length - 1
+        ?
+        "Finish Quiz"
+        :
+        "Next Question →";
+
+}
+
+
+$("#nextQ").addEventListener(
+    "click",
+    function(){
+
+        const answer =
+            document.querySelector(
+                'input[name="q"]:checked'
+            );
+
+
+        if(!answer){
+
+            alert(
+                "Please select an answer."
+            );
+
+            return;
+
+        }
+
+
+        if(
+            +answer.value
+            ===
+            questions[questionIndex][2]
+        ){
+
+            score++;
+
+        }
+
+
+        if(
+            questionIndex
+            <
+            questions.length - 1
+        ){
+
+            questionIndex++;
+
+            renderQuestion();
+
+        }else{
+
+            $("#qText").textContent =
+                "Quiz completed!";
+
+
+            $("#qOptions").innerHTML =
+                "";
+
+
+            $("#nextQ").style.display =
+                "none";
+
+
+            $("#quizResult").innerHTML = `
+
+                <div class="quizResult">
+
+                    Your score:
+                    ${score}/${questions.length}
+
+                    —
+
+                    ${
+                        score >= 15
+                        ?
+                        "🏆 Outstanding! You are a Cyber Safety Champion!"
+                        :
+                        score >= 10
+                        ?
+                        "👍 Good effort! Review the learning modules to boost your score."
+                        :
+                        "⚠️ Keep learning and try the quiz again to stay protected."
+                    }
+
+                </div>
+
+            `;
+
+        }
+
+    }
+);
+
+
+renderQuestion();
+
+</script>
+
+</body>
+</html>
